@@ -1,16 +1,16 @@
-package com.bricklink.api.rest;
+package com.bricklink.api.rest.client;
 
 import com.bricklink.api.rest.model.v1.Inventory;
 import com.bricklink.api.rest.model.v1.Item;
 import com.bricklink.api.rest.model.v1.PriceGuide;
 import com.bricklink.api.rest.model.v1.SubsetEntry;
-import com.bricklink.api.rest.support.BricklinkResource;
+import com.bricklink.api.rest.model.v1.BricklinkResource;
 import feign.*;
 
 import java.util.List;
 import java.util.Map;
 
-public interface BricklinkClient {
+public interface BricklinkRestClient {
     @RequestLine("GET /items/{type}/{no}")
     BricklinkResource<Item> getCatalogItem(@Param("type") String type, @Param("no") String no);
 

@@ -1,6 +1,6 @@
 package com.bricklink.api.rest.support;
 
-import com.bricklink.api.rest.BricklinkClient;
+import com.bricklink.api.rest.client.BricklinkRestClient;
 import feign.Request;
 import feign.RequestTemplate;
 import feign.Target;
@@ -49,7 +49,7 @@ public class BricklinkTarget<T> implements Target<T> {
 
     @Override
     public Class type() {
-        return BricklinkClient.class;
+        return BricklinkRestClient.class;
     }
 
     @Override

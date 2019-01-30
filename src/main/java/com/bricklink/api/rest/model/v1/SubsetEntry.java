@@ -1,33 +1,15 @@
 package com.bricklink.api.rest.model.v1;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.util.List;
 
+@Getter
+@Setter
+@ToString
 public class SubsetEntry {
-
-    private Integer match_no;
-    private List<SubsetEntryDetail> entries;
-
-    public Integer getMatch_no() {
-        return match_no;
-    }
-
-    public void setMatch_no(Integer match_no) {
-        this.match_no = match_no;
-    }
-
-    public List<SubsetEntryDetail> getEntries() {
-        return entries;
-    }
-
-    public void setEntries(List<SubsetEntryDetail> entries) {
-        this.entries = entries;
-    }
-
-    @Override
-    public String toString() {
-        return "SubsetEntry{" +
-                "match_no=" + match_no +
-                ", entries=" + entries +
-                '}';
-    }
+    private Integer match_no;                // A identification number given to a matching group that consists of regular items and alternate items.	0 if there is no matching of alternative item
+    private List<SubsetEntryDetail> entries; // A list of the items included in the specified item
 }
