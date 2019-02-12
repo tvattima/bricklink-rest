@@ -54,12 +54,12 @@ public class BricklinkTarget<T> implements Target<T> {
 
     @Override
     public String name() {
-        return "Bricklink v1";
+        return "Bricklink com.bricklink.api.ajax.model.v1";
     }
 
     @Override
     public String url() {
-        return "https://api.bricklink.com/api/store/v1";
+        return "https://api.bricklink.com/api/store/com.bricklink.api.ajax.model.v1";
     }
 
     private String getFirstValue(Collection<String> strings) {
