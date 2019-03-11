@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @ToString
@@ -27,7 +29,7 @@ public class Inventory {
     private Boolean is_retain;      // Indicates whether the item retains in inventory after it is sold out
     private Boolean is_stock_room;  // Indicates whether the item appears only in owner’s inventory
     private String stock_room_id;   // Indicates the stockroom that the item to be placed when the user uses multiple stockroom	A, B, C
-    private String date_created;    // The time this lot is created
+    private LocalDateTime date_created;   // The time this lot is created
     private Double my_cost;         // My Cost value to tracking the cost of item
     private Integer sale_rate;      // Sale value to adjust item price	Must be less than 100. 20 for 20% sale
     private Integer tier_quantity1; // A parameter for Tiered pricing	0 for no tier sale option
