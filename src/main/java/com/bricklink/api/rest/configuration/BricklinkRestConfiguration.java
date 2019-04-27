@@ -54,10 +54,10 @@ public class BricklinkRestConfiguration {
                 .logger(new Slf4jLogger(BricklinkRestClient.class))
                 .logLevel(feign.Logger.Level.FULL)
                 .target(new BricklinkTarget<>(
-                        bricklinkRestProperties.getConsumer().getKey(),
-                        bricklinkRestProperties.getConsumer().getSecret(),
-                        bricklinkRestProperties.getToken().getValue(),
-                        bricklinkRestProperties.getToken().getSecret()));
+                        bricklinkRestProperties.getBricklink().getConsumer().getKey(),
+                        bricklinkRestProperties.getBricklink().getConsumer().getSecret(),
+                        bricklinkRestProperties.getBricklink().getToken().getValue(),
+                        bricklinkRestProperties.getBricklink().getToken().getSecret()));
     }
 
     private class BricklinkErrorDecoder implements ErrorDecoder {
