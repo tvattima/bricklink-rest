@@ -19,7 +19,7 @@ import java.util.Optional;
 @Setter
 @Getter
 @Configuration
-@ConfigurationProperties(prefix = "bricklink")
+@ConfigurationProperties(prefix = "bricklink.rest")
 public class BricklinkRestProperties {
     private Path clientConfigDir;
     private Path clientConfigFile;
