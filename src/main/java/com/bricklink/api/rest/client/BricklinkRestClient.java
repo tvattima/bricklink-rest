@@ -1,10 +1,6 @@
 package com.bricklink.api.rest.client;
 
-import com.bricklink.api.rest.model.v1.Inventory;
-import com.bricklink.api.rest.model.v1.Item;
-import com.bricklink.api.rest.model.v1.PriceGuide;
-import com.bricklink.api.rest.model.v1.SubsetEntry;
-import com.bricklink.api.rest.model.v1.BricklinkResource;
+import com.bricklink.api.rest.model.v1.*;
 import feign.*;
 
 import java.util.List;
@@ -43,4 +39,11 @@ public interface BricklinkRestClient {
     @Headers("Content-Type: application/json")
     @Body("{inventory}")
     BricklinkResource<Inventory> updateInventory(@Param("inventory_id") Long inventoryId, Inventory inventory);
+
+    @RequestLine("GET /categories")
+    BricklinkResource<List<Category>> getCategories();
+
+
+    @RequestLine("GET /categories/{category_id}")
+    BricklinkResource<Category> getCategory(@Param("category_id") Long categoryId);
 }
