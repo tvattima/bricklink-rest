@@ -46,4 +46,13 @@ public interface BricklinkRestClient {
 
     @RequestLine("GET /categories/{category_id}")
     BricklinkResource<Category> getCategory(@Param("category_id") Long categoryId);
+
+    @RequestLine("GET /colors")
+    BricklinkResource<List<Color>> getColors();
+
+    @RequestLine("GET /colors/{color_id}")
+    BricklinkResource<Color> getColor(@Param("color_id") Integer colorId);
+
+    @RequestLine("GET /item_mapping/part/{no}?color_id={color_id}")
+    BricklinkResource<List<ItemMapping>> getItemMapping(@Param("no") String no, @Param("color_id") Integer colorId);
 }
