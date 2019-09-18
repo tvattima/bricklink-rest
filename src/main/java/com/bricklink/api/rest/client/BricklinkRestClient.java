@@ -28,6 +28,18 @@ public interface BricklinkRestClient {
                     "color_id={colorId}")
     BricklinkResource<List<Inventory>> getInventories(@QueryMap Map<String, Object> params);
 
+    @RequestLine("GET /orders?" +
+            "direction={direction}&"+
+            "status={status}&"+
+            "fileid={fileId}")
+    BricklinkResource<List<Order>> getOrders(@QueryMap Map<String, Object> params);
+
+    @RequestLine("GET /orders/{order_id}")
+    BricklinkResource<Order> getOrder(@Param("order_id") String orderId);
+
+    @RequestLine("GET /orders/{order_id}/items")
+    BricklinkResource<List<List<OrderItem>>> getOrderItems(@Param("order_id") String orderId);
+
     @RequestLine("GET /inventories/{inventory_id}")
     BricklinkResource<Inventory> getInventories(@Param("inventory_id") Long inventoryId);
 
