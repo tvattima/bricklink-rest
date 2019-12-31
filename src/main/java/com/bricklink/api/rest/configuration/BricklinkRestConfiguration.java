@@ -21,19 +21,19 @@ import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
 import feign.okhttp.OkHttpClient;
 import feign.slf4j.Slf4jLogger;
-import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
+import okhttp3.logging.HttpLoggingInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.function.BiFunction;
 
 @Configuration
 public class BricklinkRestConfiguration {
 
     @Bean
+    @Primary
     public ObjectMapper objectMapper() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
@@ -45,9 +45,12 @@ public class BricklinkRestConfiguration {
 
     @Bean
     public BricklinkRestClient bricklinkClient(ObjectMapper mapper, BricklinkRestProperties bricklinkRestProperties) {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        okhttp3.OkHttpClient okHttpClientDelegate = new okhttp3.OkHttpClient.Builder().addInterceptor(logging).build();
         return Feign
                 .builder()
-                .client(new OkHttpClient())
+                .client(new OkHttpClient(okHttpClientDelegate))
                 .encoder(new JacksonEncoder(mapper))
                 .decoder(new BricklinkDecoder(mapper))
                 .errorDecoder(new BricklinkErrorDecoder())

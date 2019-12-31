@@ -32,6 +32,11 @@ public interface BricklinkRestClient {
             "direction={direction}&"+
             "status={status}&"+
             "fileid={fileId}")
+    BricklinkResource<List<Order>> getOrders(@QueryMap Map<String, Object> params, @Param("status") Iterable status);
+
+    @RequestLine("GET /orders?" +
+            "direction={direction}&"+
+            "fileid={fileId}")
     BricklinkResource<List<Order>> getOrders(@QueryMap Map<String, Object> params);
 
     @RequestLine("GET /orders/{order_id}")

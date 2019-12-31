@@ -4,11 +4,13 @@ import com.bricklink.api.rest.client.BricklinkRestClient;
 import feign.Request;
 import feign.RequestTemplate;
 import feign.Target;
+import lombok.extern.slf4j.Slf4j;
 
 import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.Map;
 
+@Slf4j
 public class BricklinkTarget<T> implements Target<T> {
 
     private String consumerKey;
@@ -35,9 +37,18 @@ public class BricklinkTarget<T> implements Target<T> {
         signer.setVerb(input.method());
         signer.setURL(input.url());
 
-        for (String key : input.queries().keySet()) {
-            signer.addParameter(key, getFirstValue(input.queries().get(key)));
-        }
+//        input.queries().keySet().forEach(k -> {
+//            input.queries().get(k).forEach(v -> {
+//                log.info("Adding [{},{}] to signer", k, v);
+//                signer.addParameter(k, v);
+//            });
+//        });
+        input.queries()
+             .keySet()
+             .forEach(k -> {
+                 signer.addParameter(k, String.join(",", input.queries()
+                                                              .get(k)));
+             });
         try {
             input.header("Authorization", getAuthorizationHeader(signer.getFinalOAuthParams()));
         } catch (Exception e) {
