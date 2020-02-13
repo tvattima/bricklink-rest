@@ -1,5 +1,6 @@
 package com.bricklink.api.rest.model.v1;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,7 +10,9 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Order {
+    @EqualsAndHashCode.Include
     private String order_id;                   //String	Unique identifier for this order for internal use
     private LocalDateTime date_ordered;        //Timestamp	The time the order was created
     private LocalDateTime date_status_changed; //	Timestamp	The time the order status was last modified
