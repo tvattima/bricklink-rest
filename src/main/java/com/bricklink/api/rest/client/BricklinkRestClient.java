@@ -57,6 +57,20 @@ public interface BricklinkRestClient {
     @Body("{inventory}")
     BricklinkResource<Inventory> updateInventory(@Param("inventory_id") Long inventoryId, Inventory inventory);
 
+    @RequestLine("PUT /orders/{order_id}")
+    @Headers("Content-Type: application/json")
+    @Body("{order}")
+    BricklinkResource<Order> updateOrder(@Param("order_id") String orderId, Order order);
+
+    @RequestLine("PUT /orders/{order_id}/status")
+    @Headers("Content-Type: application/json")
+    @Body("%7B\"field\": \"status\", \"value\": \"{status}\" %7D")
+    BricklinkResource<Inventory> updateOrderStatus(@Param("order_id") String orderId, @Param("status") OrderStatus status);
+
+    @RequestLine("POST /orders/{order_id}/drive_thru?mail_me={mail_me}")
+    @Headers("Content-Type: application/json")
+    BricklinkResource<Void> sendDriveThru(@Param("order_id") String orderId, @Param("mail_me") boolean mailMe);
+
     @RequestLine("GET /categories")
     BricklinkResource<List<Category>> getCategories();
 

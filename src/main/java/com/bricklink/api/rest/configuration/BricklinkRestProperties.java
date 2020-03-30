@@ -11,6 +11,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 import java.io.IOException;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,6 +24,7 @@ import java.util.Optional;
 public class BricklinkRestProperties {
     private Path clientConfigDir;
     private Path clientConfigFile;
+    private URI uri;
     private Bricklink bricklink;
 
     public void setClientConfigDir(Path clientConfigDir) {
@@ -55,10 +57,6 @@ public class BricklinkRestProperties {
                 throw new IllegalStateException("[" + jsonConfigFile.toAbsolutePath() + "] does not exist");
             }
         }
-    }
-
-    public Bricklink getBricklink() {
-        return Optional.ofNullable(bricklink).orElseThrow(() -> new IllegalStateException("Bricklink properties have not been loaded"));
     }
 
     @Data

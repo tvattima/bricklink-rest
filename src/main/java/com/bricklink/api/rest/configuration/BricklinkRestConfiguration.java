@@ -60,7 +60,10 @@ public class BricklinkRestConfiguration {
                         bricklinkRestProperties.getBricklink().getConsumer().getKey(),
                         bricklinkRestProperties.getBricklink().getConsumer().getSecret(),
                         bricklinkRestProperties.getBricklink().getToken().getValue(),
-                        bricklinkRestProperties.getBricklink().getToken().getSecret()));
+                        bricklinkRestProperties.getBricklink()
+                                               .getToken()
+                                               .getSecret(),
+                        bricklinkRestProperties.getUri()));
     }
 
     private class BricklinkErrorDecoder implements ErrorDecoder {
@@ -95,6 +98,13 @@ public class BricklinkRestConfiguration {
                 BricklinkMeta meta = bricklinkResource.getMeta();
                 if (meta.getCode() >= 400 && meta.getCode() <= 499) {
                     throw new BricklinkClientException(meta.getCode(), meta.getMessage(), meta.getDescription());
+                }
+                if (meta.getCode() >= 500 && meta.getCode() <= 599) {
+                    throw new BricklinkServerException(meta.getCode(),
+                            String.format("Brickling server error description: [%s] message: [%s] code: [%s]",
+                                    meta.getDescription(),
+                                    meta.getMessage(),
+                                    meta.getCode()));
                 }
             }
             return object;

@@ -1,11 +1,13 @@
 package com.bricklink.api.rest.model.v1;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -37,4 +39,18 @@ public class Order {
     private Cost cost;                         //	Object  Cost information for this order
     private Cost disp_cost;                    //	Object	Cost information for this order in DISPLAY currency
 
+    @JsonIgnore
+    public boolean isPaid() {
+        return OrderStatus.valueOf(this.getStatus()).compareTo(OrderStatus.PAID) >= 0;
+    }
+
+    @JsonIgnore
+    public boolean isShipped() {
+        return OrderStatus.valueOf(this.getStatus()).compareTo(OrderStatus.SHIPPED) >= 0;
+    }
+
+    @JsonIgnore
+    public boolean isNotShipped() {
+        return !isShipped();
+    }
 }

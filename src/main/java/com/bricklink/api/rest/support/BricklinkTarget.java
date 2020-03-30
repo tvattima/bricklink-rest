@@ -6,6 +6,7 @@ import feign.RequestTemplate;
 import feign.Target;
 import lombok.extern.slf4j.Slf4j;
 
+import java.net.URI;
 import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.Map;
@@ -17,13 +18,15 @@ public class BricklinkTarget<T> implements Target<T> {
     private String consumerSecret;
     private String tokenValue;
     private String tokenSecret;
+    private URI uri;
     private String authorizationHeader = "OAuth realm=\"\",oauth_consumer_key=\"{0}\",oauth_token=\"{1}\",oauth_signature_method=\"HMAC-SHA1\",oauth_signature=\"{2}\",oauth_timestamp=\"{3}\",oauth_nonce=\"{4}\",oauth_version=\"1.0\"";
 
-    public BricklinkTarget(String consumerKey, String consumerSecret, String tokenValue, String tokenSecret) {
+    public BricklinkTarget(String consumerKey, String consumerSecret, String tokenValue, String tokenSecret, URI uri) {
         this.consumerKey = consumerKey;
         this.consumerSecret = consumerSecret;
         this.tokenValue = tokenValue;
         this.tokenSecret = tokenSecret;
+        this.uri = uri;
     }
 
     @Override
@@ -70,7 +73,7 @@ public class BricklinkTarget<T> implements Target<T> {
 
     @Override
     public String url() {
-        return "https://api.bricklink.com/api/store/v1";
+        return uri.toString();
     }
 
     private String getFirstValue(Collection<String> strings) {
