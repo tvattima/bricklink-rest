@@ -4,7 +4,7 @@ import com.bricklink.api.rest.client.BricklinkRestClient;
 import com.bricklink.api.rest.model.v1.BricklinkResource;
 import com.bricklink.api.rest.model.v1.Color;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Optional;

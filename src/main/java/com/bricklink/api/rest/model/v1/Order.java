@@ -50,6 +50,11 @@ public class Order {
     }
 
     @JsonIgnore
+    public boolean isCancelled() {
+        return OrderStatus.valueOf(this.getStatus()).compareTo(OrderStatus.CANCELLED) == 0;
+    }
+
+    @JsonIgnore
     public boolean isNotShipped() {
         return !isShipped();
     }

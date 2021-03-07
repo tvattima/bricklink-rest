@@ -1,13 +1,9 @@
 package com.bricklink.api.rest.model.v1;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-@Getter
-@Setter
-@ToString
+@Data
 public class PriceDetail {
     private Integer quantity;           // The number of the items in the inventory
     private Double unit_price;          // Point Number	The original price of this item per sale unit
