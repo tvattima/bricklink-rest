@@ -101,7 +101,7 @@ public class BricklinkRestConfiguration {
                 }
                 if (meta.getCode() >= 500 && meta.getCode() <= 599) {
                     throw new BricklinkServerException(meta.getCode(),
-                            String.format("Brickling server error description: [%s] message: [%s] code: [%s]",
+                            String.format("Bricklink server error description: [%s] message: [%s] code: [%s]",
                                     meta.getDescription(),
                                     meta.getMessage(),
                                     meta.getCode()));

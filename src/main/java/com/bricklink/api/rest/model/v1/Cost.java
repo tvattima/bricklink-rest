@@ -19,4 +19,5 @@ public class Cost {
     private Double coupon;        //	Fixed Point Number	Amount of coupon discount in DISPLAY currency
     private Double vat_rate;      //	Fixed Point Number	VAT percentage applied to this order	Upcoming Feature
     private Double vat_amount;    //	Fixed Point Number	Total amount of VAT included in the grand_total price in DISPLAY currency	Upcoming Feature
+    private Double salesTax_collected_by_BL; // salesTax_collected_by_BL
 }
