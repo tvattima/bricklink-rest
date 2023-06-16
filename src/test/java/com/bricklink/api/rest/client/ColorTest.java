@@ -1,7 +1,8 @@
 package com.bricklink.api.rest.client;
 
 import com.bricklink.api.rest.model.v1.Color;
-import org.junit.Test;
+import com.github.tomakehurst.wiremock.junit5.WireMockTest;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -11,11 +12,11 @@ import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlMatching;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.doReturn;
 
-public class ColorTest extends BricklistRestClientTest {
+@WireMockTest(httpPort = 8080)
+class ColorTest extends BricklistRestClientTest {
     @Test
-    public void colorById_returns200() {
+    void colorById_returns200() {
         stubFor(get(urlEqualTo("/colors"))
                 .willReturn(aResponse()
                         .withStatus(200)
@@ -26,7 +27,7 @@ public class ColorTest extends BricklistRestClientTest {
     }
 
     @Test
-    public void getColor_withExistingColorId_returnsColor() {
+    void getColor_withExistingColorId_returnsColor() {
         stubFor(get(urlMatching("/colors/[0-9]+"))
                 .willReturn(aResponse()
                         .withStatus(200)

@@ -4,7 +4,7 @@ import com.bricklink.api.rest.client.BricklinkRestClient;
 import com.bricklink.api.rest.model.v1.BricklinkMeta;
 import com.bricklink.api.rest.model.v1.BricklinkResource;
 import com.bricklink.api.rest.model.v1.Color;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +13,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
-public class ColorServiceTest {
+class ColorServiceTest {
     @Test
-    public void colorById() {
+    void colorById() {
         BricklinkRestClient bricklinkRestClient = mock(BricklinkRestClient.class);
         setupColorsList(bricklinkRestClient);
         BricklinkResource<Color> color = getResource(200, color(1, "1", "White"));
