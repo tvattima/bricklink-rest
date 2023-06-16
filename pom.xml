@@ -15,6 +15,7 @@
     <name>Bricklink API :: REST</name>
 
     <properties>
+        <mockito.version>3.12.4</mockito.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>11</java.version>
         <openfeign.version>10.12</openfeign.version>
@@ -145,6 +146,23 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
+          <plugin>
+            <groupId>org.openrewrite.maven</groupId>
+            <artifactId>rewrite-maven-plugin</artifactId>
+            <version>4.46.0</version>
+            <configuration>
+              <activeRecipes>
+                <recipe>org.openrewrite.java.spring.boot2.UpgradeSpringBoot_2_3</recipe>
+              </activeRecipes>
+            </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>org.openrewrite.recipe</groupId>
+                <artifactId>rewrite-spring</artifactId>
+                <version>4.36.0</version>
+              </dependency>
+            </dependencies>
+          </plugin>
         </plugins>
     </build>
 </project>
