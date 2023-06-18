@@ -19,7 +19,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>17</java.version>
     <openfeign.version>10.12</openfeign.version>
-    <httpclient.version>4.5.13</httpclient.version>
     <lombok.version>1.18.28</lombok.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
   </properties>
